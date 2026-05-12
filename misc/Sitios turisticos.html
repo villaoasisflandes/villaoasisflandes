@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sitios Turísticos · Villa Oasis Flandes</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --arena: #E8DCCB;
+      --arena-dark: #d4c9b0;
+      --verde: #2F5D50;
+      --verde-light: #3d7a69;
+      --turquesa: #1F6F78;
+      --turquesa-light: #28919d;
+      --dorado: #C6A75E;
+      --dorado-light: #d4b870;
+      --blanco: #FAFAF7;
+      --negro: #1a1a18;
+      --gris: #6b6b60;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--blanco); color: var(--negro); }
+
+    /* HEADER */
+    .page-header {
+      background: var(--turquesa);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(40,145,157,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(198,167,94,0.1) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.6); font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      transition: color 0.2s; margin-bottom: 2.5rem;
+    }
+    .back-link:hover { color: var(--dorado); }
+    .back-link svg { width: 16px; height: 16px; }
+    .header-badge {
+      display: inline-block;
+      border: 1px solid rgba(198,167,94,0.5);
+      color: var(--dorado); font-size: 0.7rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      padding: 0.38rem 1.3rem; border-radius: 2px; margin-bottom: 1.2rem;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 300; color: white; line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .page-title em { font-style: italic; color: var(--dorado); }
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 300; color: rgba(255,255,255,0.75);
+      max-width: 560px; margin: 0 auto;
+    }
+    .header-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; margin: 2rem auto 0;
+    }
+    .header-divider::before, .header-divider::after {
+      content: ''; width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(198,167,94,0.6));
+    }
+    .header-divider::before { transform: scaleX(-1); }
+    .header-diamond { width: 6px; height: 6px; background: var(--dorado); transform: rotate(45deg); }
+
+    /* CONTENT */
+    .content { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+    /* INTRO */
+    .intro-box {
+      background: var(--arena);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 3.5rem;
+      border-left: 4px solid var(--turquesa);
+    }
+    .intro-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 300;
+      line-height: 1.7; color: var(--negro);
+    }
+    .intro-box strong { color: var(--turquesa); font-weight: 600; }
+
+    /* SECTION */
+    .sitios-section { margin-bottom: 3.5rem; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--arena-dark);
+    }
+    .section-badge {
+      background: var(--turquesa);
+      color: white; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 20px;
+    }
+    .section-badge.verde { background: var(--verde); }
+    .section-badge.dorado { background: var(--dorado); color: var(--negro); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 400; color: var(--negro);
+    }
+    .section-title em { font-style: italic; color: var(--turquesa); }
+    .section-title.verde em { color: var(--verde); }
+    .section-title.dorado em { color: var(--dorado); }
+
+    /* SITE CARDS GRID */
+    .sites-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .sites-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .site-card {
+      background: white;
+      border: 1px solid var(--arena-dark);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .site-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--turquesa);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.25s;
+    }
+    .site-card:hover { border-color: var(--turquesa); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .site-card:hover::before { transform: scaleY(1); }
+    .site-card.verde::before { background: var(--verde); }
+    .site-card.verde:hover { border-color: var(--verde); }
+    .site-card.dorado::before { background: var(--dorado); }
+    .site-card.dorado:hover { border-color: var(--dorado); }
+
+    .site-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.8rem; }
+    .site-emoji { font-size: 1.8rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+    .site-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400; color: var(--negro);
+      line-height: 1.2; margin-bottom: 0.15rem;
+    }
+    .site-type {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--turquesa); font-weight: 600;
+    }
+    .site-type.verde { color: var(--verde); }
+    .site-type.dorado { color: var(--dorado); }
+    .site-desc { font-size: 0.86rem; color: var(--gris); line-height: 1.6; }
+    .site-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+    .site-tag {
+      font-size: 0.7rem; padding: 0.2rem 0.65rem; border-radius: 20px;
+      background: var(--arena); color: var(--gris); letter-spacing: 0.05em;
+    }
+
+    /* DISTANCIAS */
+    .distancias-bar {
+      background: var(--verde);
+      border-radius: 12px;
+      padding: 1.8rem 2.5rem;
+      margin-bottom: 3rem;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+    }
+    .dist-item { text-align: center; padding: 0 1rem; }
+    .dist-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--dorado); line-height: 1;
+    }
+    .dist-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 0.3rem; }
+    .dist-divider { width: 1px; background: rgba(255,255,255,0.1); }
+
+    /* CONSEJO */
+    .consejo-box {
+      background: linear-gradient(135deg, var(--verde) 0%, var(--turquesa) 100%);
+      border-radius: 12px;
+      padding: 2.5rem;
+      color: white;
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+    .consejo-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .consejo-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-style: italic;
+      color: var(--dorado); margin-bottom: 0.8rem;
+    }
+    .consejo-text { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+    .consejo-btn {
+      display: inline-block; margin-top: 1.5rem;
+      background: var(--dorado); color: var(--negro);
+      padding: 0.8rem 2rem; border-radius: 2px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .consejo-btn:hover { background: var(--dorado-light); }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--negro);
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--dorado); margin-bottom: 0.4rem;
+    }
+    .footer-sub {
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 700px) {
+      .sites-grid, .sites-grid.cols-3 { grid-template-columns: 1fr; }
+      .distancias-bar { grid-template-columns: 1fr 1fr; row-gap: 1.5rem; }
+      .dist-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-inner">
+      <a href="https://villaoasisflandes.com" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al sitio
+      </a>
+      <div class="header-badge">Villa Oasis · Flandes</div>
+      <h1 class="page-title">Sitios <em>Turísticos</em></h1>
+      <p class="page-subtitle">Los mejores planes a minutos de Villa Oasis</p>
+      <div class="header-divider"><div class="header-diamond"></div></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- INTRO -->
+    <div class="intro-box">
+      <p>
+        Flandes y sus alrededores ofrecen una gran variedad de planes: desde parques acuáticos y gastronomía típica hasta naturaleza y aventura. Aquí encontrarás nuestras recomendaciones favoritas, <strong>curadas especialmente para los huéspedes de Villa Oasis</strong>.
+      </p>
+    </div>
+
+    <!-- DISTANCIAS -->
+    <div class="distancias-bar">
+      <div class="dist-item">
+        <div class="dist-num">5'</div>
+        <div class="dist-label">Centro de Flandes</div>
+      </div>
+      <div class="dist-divider"></div>
+      <div class="dist-item">
+        <div class="dist-num">15'</div>
+        <div class="dist-label">Girardot</div>
+      </div>
+      <div class="dist-divider"></div>
+      <div class="dist-item">
+        <div class="dist-num">15'</div>
+        <div class="dist-label">Piscilago</div>
+      </div>
+      <div class="dist-divider"></div>
+      <div class="dist-item">
+        <div class="dist-num">90'</div>
+        <div class="dist-label">Hacienda Nápoles</div>
+      </div>
+    </div>
+
+    <!-- CERCA - FLANDES -->
+    <div class="sitios-section">
+      <div class="section-header">
+        <span class="section-badge">Menos de 15 min</span>
+        <h2 class="section-title">En <em>Flandes</em></h2>
+      </div>
+      <div class="sites-grid cols-3">
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-emoji">🏛️</div>
+            <div>
+              <div class="site-name">Parque Principal de Flandes</div>
+              <div class="site-type">Cultura · Gastronomía</div>
+            </div>
+          </div>
+          <p class="site-desc">El corazón del municipio. Ideal para caminar, tomar tinto y probar comida local típica. Ambiente familiar y animado.</p>
+          <div class="site-tags">
+            <span class="site-tag">Entrada libre</span>
+            <span class="site-tag">5 min</span>
+          </div>
+        </div>
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-emoji">🌊</div>
+            <div>
+              <div class="site-name">Malecón del Río Magdalena</div>
+              <div class="site-type">Naturaleza · Panorámica</div>
+            </div>
+          </div>
+          <p class="site-desc">Paseo junto al gran Río Magdalena. Los atardeceres son espectaculares. Perfecto para fotos y una caminata tranquila.</p>
+          <div class="site-tags">
+            <span class="site-tag">Entrada libre</span>
+            <span class="site-tag">8 min</span>
+          </div>
+        </div>
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-emoji">🍽️</div>
+            <div>
+              <div class="site-name">Estadero El Palmar</div>
+              <div class="site-type">Gastronomía</div>
+            </div>
+          </div>
+          <p class="site-desc">Restaurante típico tolimense con vista al río. Famoso por el viudo de pescado y la mojarra frita. Imperdible.</p>
+          <div class="site-tags">
+            <span class="site-tag">Comida típica</span>
+            <span class="site-tag">10 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARQUES ACUÁTICOS -->
+    <div class="sitios-section">
+      <div class="section-header">
+        <span class="section-badge verde">10 – 20 min</span>
+        <h2 class="section-title verde">Parques <em style="color:var(--verde)">Acuáticos</em></h2>
+      </div>
+      <div class="sites-grid">
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🏊</div>
+            <div>
+              <div class="site-name">Piscilago</div>
+              <div class="site-type verde">Parque acuático · Día completo</div>
+            </div>
+          </div>
+          <p class="site-desc">El parque acuático más grande de Colombia. Ideal para un día completo en familia con decenas de atracciones. <strong>Reservar con anticipación</strong> en temporada alta.</p>
+          <div class="site-tags">
+            <span class="site-tag">Familias</span>
+            <span class="site-tag">15 min</span>
+            <span class="site-tag">Todo el día</span>
+          </div>
+        </div>
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🌊</div>
+            <div>
+              <div class="site-name">Lagos de Moravia</div>
+              <div class="site-type verde">Parque acuático</div>
+            </div>
+          </div>
+          <p class="site-desc">Opción más tranquila y familiar. Buena alternativa para niños pequeños y grupos que prefieren un ambiente más relajado.</p>
+          <div class="site-tags">
+            <span class="site-tag">Niños pequeños</span>
+            <span class="site-tag">15 min</span>
+          </div>
+        </div>
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🎢</div>
+            <div>
+              <div class="site-name">Aquapark Girardot</div>
+              <div class="site-type verde">Parque acuático</div>
+            </div>
+          </div>
+          <p class="site-desc">Con toboganes de alta velocidad y piscinas de olas artificiales. Ideal para jóvenes y grupos que buscan adrenalina.</p>
+          <div class="site-tags">
+            <span class="site-tag">Toboganes</span>
+            <span class="site-tag">20 min</span>
+            <span class="site-tag">Jóvenes</span>
+          </div>
+        </div>
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🦆</div>
+            <div>
+              <div class="site-name">El Recreo</div>
+              <div class="site-type verde">Balneario familiar</div>
+            </div>
+          </div>
+          <p class="site-desc">Balneario con aguas naturales del río, rodeado de vegetación. Ambiente campestre y gastronomía local muy recomendada.</p>
+          <div class="site-tags">
+            <span class="site-tag">Aguas naturales</span>
+            <span class="site-tag">15 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GIRARDOT -->
+    <div class="sitios-section">
+      <div class="section-header">
+        <span class="section-badge">20 min</span>
+        <h2 class="section-title">Girardot y <em>Alrededores</em></h2>
+      </div>
+      <div class="sites-grid cols-3">
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-emoji">🏬</div>
+            <div>
+              <div class="site-name">Centro Comercial Unicentro</div>
+              <div class="site-type">Compras · Entretenimiento</div>
+            </div>
+          </div>
+          <p class="site-desc">Compras, cine y restaurantes. La mejor opción para días de lluvia o cuando se quiere salir a algo diferente.</p>
+          <div class="site-tags">
+            <span class="site-tag">Cine</span>
+            <span class="site-tag">Restaurantes</span>
+          </div>
+        </div>
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-emoji">🌉</div>
+            <div>
+              <div class="site-name">Malecón de Girardot</div>
+              <div class="site-type">Gastronomía · Nocturno</div>
+            </div>
+          </div>
+          <p class="site-desc">Zona de restaurantes y vida nocturna junto al río Magdalena. Ambiente animado, especialmente los fines de semana.</p>
+          <div class="site-tags">
+            <span class="site-tag">Vida nocturna</span>
+            <span class="site-tag">Río</span>
+          </div>
+        </div>
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-emoji">🛒</div>
+            <div>
+              <div class="site-name">Mercado del Sábado</div>
+              <div class="site-type">Artesanías · Frutas</div>
+            </div>
+          </div>
+          <p class="site-desc">Artesanías, frutas tropicales exóticas y productos locales. Una experiencia auténtica de la región tolimense.</p>
+          <div class="site-tags">
+            <span class="site-tag">Solo sábados</span>
+            <span class="site-tag">Artesanías</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATURALEZA -->
+    <div class="sitios-section">
+      <div class="section-header">
+        <span class="section-badge dorado">Excursiones</span>
+        <h2 class="section-title dorado">Naturaleza y <em style="color:var(--dorado)">Aventura</em></h2>
+      </div>
+      <div class="sites-grid">
+        <div class="site-card dorado">
+          <div class="site-header">
+            <div class="site-emoji">🦒</div>
+            <div>
+              <div class="site-name">Hacienda Nápoles</div>
+              <div class="site-type dorado">Parque temático · Historia</div>
+            </div>
+          </div>
+          <p class="site-desc">El parque temático más famoso de la región. Animales exóticos, hipopótamos, historia del narcotráfico y atracciones. <strong>Plan para todo el día.</strong></p>
+          <div class="site-tags">
+            <span class="site-tag">90 min</span>
+            <span class="site-tag">Todo el día</span>
+            <span class="site-tag">Familias</span>
+          </div>
+        </div>
+        <div class="site-card dorado">
+          <div class="site-header">
+            <div class="site-emoji">🚣</div>
+            <div>
+              <div class="site-name">Río Sumapaz — Rafting</div>
+              <div class="site-type dorado">Aventura · Deportes</div>
+            </div>
+          </div>
+          <p class="site-desc">Rafting y deportes de aventura en aguas del río Sumapaz. Ideal para grupos que buscan adrenalina y actividad física.</p>
+          <div class="site-tags">
+            <span class="site-tag">45 min</span>
+            <span class="site-tag">Rafting</span>
+            <span class="site-tag">Aventura</span>
+          </div>
+        </div>
+        <div class="site-card dorado">
+          <div class="site-header">
+            <div class="site-emoji">🦅</div>
+            <div>
+              <div class="site-name">Laguna de Madrevieja</div>
+              <div class="site-type dorado">Naturaleza · Avistamiento</div>
+            </div>
+          </div>
+          <p class="site-desc">Reserva natural con aves exóticas, pesca deportiva y kayak. Un paraíso natural a pocos minutos de Flandes.</p>
+          <div class="site-tags">
+            <span class="site-tag">Aves</span>
+            <span class="site-tag">Kayak</span>
+            <span class="site-tag">30 min</span>
+          </div>
+        </div>
+        <div class="site-card dorado">
+          <div class="site-header">
+            <div class="site-emoji">🏖️</div>
+            <div>
+              <div class="site-name">Playas del Magdalena</div>
+              <div class="site-type dorado">Naturaleza · Playa fluvial</div>
+            </div>
+          </div>
+          <p class="site-desc">Playas de río en las orillas del Magdalena. Perfectas para tomar el sol, nadar y disfrutar del paisaje llanero.</p>
+          <div class="site-tags">
+            <span class="site-tag">Playa río</span>
+            <span class="site-tag">10 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GASTRONOMÍA -->
+    <div class="sitios-section">
+      <div class="section-header">
+        <span class="section-badge verde">Recomendados</span>
+        <h2 class="section-title verde">Gastronomía <em style="color:var(--verde)">Local</em></h2>
+      </div>
+      <div class="sites-grid cols-3">
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🔥</div>
+            <div>
+              <div class="site-name">La Fogata del Río</div>
+              <div class="site-type verde">Carnes · Vista al río</div>
+            </div>
+          </div>
+          <p class="site-desc">Carnes a la brasa con vista privilegiada al río Magdalena. Excelente para almuerzos y cenas en familia.</p>
+          <div class="site-tags"><span class="site-tag">Parrilla</span><span class="site-tag">Vista río</span></div>
+        </div>
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🍲</div>
+            <div>
+              <div class="site-name">El Rancherito</div>
+              <div class="site-type verde">Comida típica</div>
+            </div>
+          </div>
+          <p class="site-desc">Bandeja paisa y sancocho de gallina criolla preparados de forma tradicional. Un clásico de la gastronomía regional.</p>
+          <div class="site-tags"><span class="site-tag">Comida típica</span><span class="site-tag">Familiar</span></div>
+        </div>
+        <div class="site-card verde">
+          <div class="site-header">
+            <div class="site-emoji">🍦</div>
+            <div>
+              <div class="site-name">Heladería La Flor</div>
+              <div class="site-type verde">Postres · Helados</div>
+            </div>
+          </div>
+          <p class="site-desc">Helados artesanales de frutas tropicales de la región: maracuyá, mango, tamarindo y más. Parada obligada.</p>
+          <div class="site-tags"><span class="site-tag">Artesanal</span><span class="site-tag">Frutas tropicales</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSEJO -->
+    <div class="consejo-box">
+      <div class="consejo-icon">💬</div>
+      <div class="consejo-title">¿Necesitas más recomendaciones?</div>
+      <p class="consejo-text">
+        Nuestro equipo está disponible para ayudarte a planear el paseo perfecto según tus intereses, el tamaño de tu grupo y los días disponibles. No dudes en escribirnos.
+      </p>
+      <a href="https://wa.me/573009427902?text=Hola,%20estoy%20hospedado%20en%20Villa%20Oasis%20y%20quisiera%20recomendaciones%20de%20planes." class="consejo-btn" target="_blank">
+        Escribirnos por WhatsApp
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <div class="footer-brand">Villa Oasis</div>
+    <div class="footer-sub">Flandes, Tolima · Colombia · villaoasisflandes.com</div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normas de Convivencia · Villa Oasis Flandes</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --arena: #E8DCCB;
+      --arena-dark: #d4c9b0;
+      --verde: #2F5D50;
+      --verde-light: #3d7a69;
+      --turquesa: #1F6F78;
+      --dorado: #C6A75E;
+      --dorado-light: #d4b870;
+      --blanco: #FAFAF7;
+      --negro: #1a1a18;
+      --gris: #6b6b60;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--blanco); color: var(--negro); }
+
+    /* HEADER */
+    .page-header {
+      background: var(--verde);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(40,130,110,0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(198,167,94,0.1) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.6); font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      transition: color 0.2s; margin-bottom: 2.5rem;
+    }
+    .back-link:hover { color: var(--dorado); }
+    .back-link svg { width: 16px; height: 16px; }
+    .header-badge {
+      display: inline-block;
+      border: 1px solid rgba(198,167,94,0.5);
+      color: var(--dorado); font-size: 0.7rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      padding: 0.38rem 1.3rem; border-radius: 2px; margin-bottom: 1.2rem;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 300; color: white; line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .page-title em { font-style: italic; color: var(--dorado); }
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 300; color: rgba(255,255,255,0.75);
+      max-width: 560px; margin: 0 auto;
+    }
+    .header-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; margin: 2rem auto 0;
+    }
+    .header-divider::before, .header-divider::after {
+      content: ''; width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(198,167,94,0.6));
+    }
+    .header-divider::before { transform: scaleX(-1); }
+    .header-diamond {
+      width: 6px; height: 6px; background: var(--dorado);
+      transform: rotate(45deg);
+    }
+
+    /* CONTENT */
+    .content { max-width: 900px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+    /* INTRO */
+    .intro-box {
+      background: var(--arena);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 3.5rem;
+      border-left: 4px solid var(--turquesa);
+    }
+    .intro-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 300;
+      line-height: 1.7; color: var(--negro);
+    }
+    .intro-box strong { color: var(--turquesa); font-weight: 600; }
+
+    /* SECTION BLOCK */
+    .norma-section {
+      margin-bottom: 3rem;
+    }
+    .norma-section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--arena-dark);
+    }
+    .norma-icon {
+      width: 52px; height: 52px; min-width: 52px;
+      background: var(--verde);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .norma-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 400; color: var(--negro);
+    }
+    .norma-section-title em { font-style: italic; color: var(--turquesa); }
+    .norma-list {
+      list-style: none;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .norma-list.single { grid-template-columns: 1fr; }
+    .norma-item {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      padding: 0.9rem 1.1rem;
+      background: white;
+      border: 1px solid var(--arena-dark);
+      border-radius: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .norma-item:hover { border-color: var(--turquesa); transform: translateY(-2px); }
+    .norma-check {
+      width: 22px; height: 22px; min-width: 22px;
+      background: var(--turquesa); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .norma-check svg { width: 12px; height: 12px; color: white; }
+    .norma-text { font-size: 0.9rem; line-height: 1.5; color: var(--negro); }
+
+    /* PROHIBITIONS - red accent */
+    .norma-item.prohibicion { border-color: rgba(210,70,60,0.15); }
+    .norma-item.prohibicion:hover { border-color: rgba(210,70,60,0.4); }
+    .norma-item.prohibicion .norma-check { background: #d24640; }
+
+    /* HORARIO CARD */
+    .horario-card {
+      background: var(--verde);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      color: white;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .horario-item { text-align: center; }
+    .horario-tiempo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 300;
+      color: var(--dorado); line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .horario-label {
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.7);
+    }
+    .horario-divider {
+      width: 1px; background: rgba(198,167,94,0.3);
+      align-self: stretch;
+    }
+
+    /* FIRMA */
+    .firma-box {
+      background: var(--arena);
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .firma-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-style: italic;
+      color: var(--verde); margin-bottom: 0.8rem;
+    }
+    .firma-text { font-size: 0.88rem; color: var(--gris); line-height: 1.7; }
+    .firma-text strong { color: var(--negro); }
+    .firma-divider {
+      width: 60px; height: 1px;
+      background: var(--dorado);
+      margin: 1.2rem auto;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--negro);
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--dorado); margin-bottom: 0.4rem;
+    }
+    .footer-sub {
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 680px) {
+      .norma-list { grid-template-columns: 1fr; }
+      .horario-card { grid-template-columns: 1fr; }
+      .horario-divider { width: 100%; height: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-inner">
+      <a href="https://villaoasisflandes.com" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver al sitio
+      </a>
+      <div class="header-badge">Villa Oasis · Flandes</div>
+      <h1 class="page-title">Normas de <em>Convivencia</em></h1>
+      <p class="page-subtitle">Para una estadía perfecta que todos puedan disfrutar</p>
+      <div class="header-divider"><div class="header-diamond"></div></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- INTRO -->
+    <div class="intro-box">
+      <p>
+        Bienvenidos a <strong>Villa Oasis</strong>. Estas normas existen para garantizar que todos los huéspedes, vecinos y el personal puedan disfrutar de un ambiente tranquilo, seguro y agradable. El cumplimiento de estas reglas es <strong>requisito indispensable</strong> para una estadía armoniosa.
+      </p>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="norma-section">
+      <div class="norma-section-header">
+        <div class="norma-icon">🕐</div>
+        <h2 class="norma-section-title">Horarios <em>Importantes</em></h2>
+      </div>
+      <div class="horario-card">
+        <div class="horario-item">
+          <div class="horario-tiempo">3:00 PM</div>
+          <div class="horario-label">Check-in desde</div>
+        </div>
+        <div class="horario-divider"></div>
+        <div class="horario-item">
+          <div class="horario-tiempo">12:00 M</div>
+          <div class="horario-label">Check-out hasta</div>
+        </div>
+        <div class="horario-divider"></div>
+        <div class="horario-item">
+          <div class="horario-tiempo">10:00 PM</div>
+          <div class="horario-label">Silencio desde</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PISCINA -->
+    <div class="norma-section">
+      <div class="norma-section-header">
+        <div class="norma-icon">🏊</div>
+        <h2 class="norma-section-title">Uso de la <em>Piscina</em></h2>
+      </div>
+      <ul class="norma-list">
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Horario de piscina: <strong>7:00 a.m. – 10:00 p.m.</strong></span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Uso obligatorio de <strong>gorro de baño</strong> para ingresar a la piscina</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text"><strong>Pañal especial de piscina</strong> obligatorio para niños menores de 3 años</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Ducharse antes de ingresar al agua</span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">Prohibido ingresar <strong>alimentos o bebidas</strong> al área de piscina</span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">Prohibido el ingreso de <strong>menores sin supervisión</strong> de un adulto</span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">No usar la piscina bajo efectos del alcohol</span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">No realizar saltos ni actividades de riesgo en la piscina</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- CONVIVENCIA -->
+    <div class="norma-section">
+      <div class="norma-section-header">
+        <div class="norma-icon">🤝</div>
+        <h2 class="norma-section-title">Convivencia y <em>Respeto</em></h2>
+      </div>
+      <ul class="norma-list">
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text"><strong>Silencio a partir de las 10:00 p.m.</strong> — norma del conjunto cerrado</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Respetar las zonas comunes del conjunto cerrado y a los demás residentes</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">El huésped principal es <strong>responsable</strong> del comportamiento de todos sus invitados</span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">Prohibido el uso de equipos de sonido con <strong>alto volumen después de las 9:00 p.m.</strong></span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">No se permiten <strong>mascotas</strong> dentro de la propiedad</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Máximo <strong>13 personas</strong> autorizadas en la propiedad</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- VEHÍCULOS -->
+    <div class="norma-section">
+      <div class="norma-section-header">
+        <div class="norma-icon">🚗</div>
+        <h2 class="norma-section-title">Vehículos y <em>Acceso</em></h2>
+      </div>
+      <ul class="norma-list">
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Parqueadero disponible según disponibilidad del conjunto (parqueaderos limitados)</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Velocidad máxima dentro del conjunto: <strong>10 km/h</strong></span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">Prohibido <strong>lavar vehículos</strong> dentro de las instalaciones</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">El acceso de <strong>visitantes externos</strong> debe ser autorizado por el propietario</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PROPIEDAD -->
+    <div class="norma-section">
+      <div class="norma-section-header">
+        <div class="norma-icon">🏠</div>
+        <h2 class="norma-section-title">Cuidado de la <em>Propiedad</em></h2>
+      </div>
+      <ul class="norma-list">
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">Prohibido <strong>fumar</strong> dentro de la casa</span>
+        </li>
+        <li class="norma-item prohibicion">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="norma-text">Prohibido el ingreso de <strong>personas ajenas a la reserva</strong> sin autorización</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Reportar cualquier <strong>daño o desperfecto</strong> inmediatamente al administrador</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Dejar la propiedad en las <strong>mismas condiciones</strong> en que fue recibida</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- RESPONSABILIDAD -->
+    <div class="norma-section">
+      <div class="norma-section-header">
+        <div class="norma-icon">⚠️</div>
+        <h2 class="norma-section-title">Responsabilidad y <em>Daños</em></h2>
+      </div>
+      <ul class="norma-list single">
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">El huésped principal es responsable del comportamiento de <strong>todos sus invitados</strong> y de los daños que puedan ocasionar.</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Los <strong>daños causados a la propiedad o al conjunto</strong> serán cobrados directamente al huésped responsable.</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">Villa Oasis <strong>no se hace responsable</strong> por objetos olvidados o perdidos dentro de la propiedad.</span>
+        </li>
+        <li class="norma-item">
+          <div class="norma-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="norma-text">El incumplimiento reiterado de estas normas puede resultar en la <strong>terminación anticipada de la estadía</strong> sin reembolso.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- FIRMA -->
+    <div class="firma-box">
+      <p class="firma-title">Autorización del Propietario</p>
+      <div class="firma-divider"></div>
+      <p class="firma-text">
+        <strong>Jair Hernando González</strong> · C.C. 79.915.579<br />
+        Propietario de Villa Oasis Flandes
+      </p>
+      <div class="firma-divider"></div>
+      <p class="firma-text" style="font-size:0.82rem;">
+        Al confirmar su reserva, el huésped principal acepta y se compromete<br />a cumplir todas las normas descritas en este documento.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <div class="footer-brand">Villa Oasis</div>
+    <div class="footer-sub">Flandes, Tolima · Colombia · villaoasisflandes.com</div>
+  </footer>
+
+</body>
+</html>
